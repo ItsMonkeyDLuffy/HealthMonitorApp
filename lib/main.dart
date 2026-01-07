@@ -4,6 +4,7 @@ import 'providers/health_provider.dart';
 import 'widgets/responsive_layout.dart';
 import 'package:health_monitor_app/homepage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../widgets/home_page_web.dart';
 
 void main() {
   runApp(
