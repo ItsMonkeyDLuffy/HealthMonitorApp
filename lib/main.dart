@@ -16,6 +16,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +26,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.interTextTheme(),
       ),
-      home: ResponsiveLayout(mobile: HomePage()),
+      // HERE IS THE CHANGE:
+      // We pass the Mobile layout to 'mobile'
+      // We pass the Web/Row layout to 'desktop' and 'tablet'
+      home: ResponsiveLayout(
+        mobile: const HomePage(),
+        tablet: const HomePageWeb(), // You need to create this (see step 2)
+        desktop: const HomePageWeb(), // You need to create this (see step 2)
+      ),
     );
   }
 }

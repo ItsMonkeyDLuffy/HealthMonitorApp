@@ -5,6 +5,7 @@ import '../utils/app_colors.dart';
 
 class BrainScreen extends StatelessWidget {
   const BrainScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<HealthProvider>(
@@ -26,22 +27,27 @@ class BrainScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Stress Level",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Text(
+                      "Stress Level",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                  SizedBox(width: 145),
                   Icon(Icons.show_chart, color: Colors.grey, size: 20),
+                  SizedBox(width: 10),
                   Icon(Icons.info_outline, color: Colors.grey, size: 20),
                 ],
               ),
               SizedBox(height: 15),
 
-              // Stats
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,22 +65,26 @@ class BrainScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    provider.stressLevel > 50
-                        ? "You're Stressed"
-                        : "You're Relaxed",
-                    style: TextStyle(
-                      color: provider.stressLevel > 50
-                          ? AppColors.brainColor
-                          : AppColors.successText,
-                      fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Text(
+                      provider.stressLevel > 50
+                          ? "You're Stressed"
+                          : "You're Relaxed",
+                      style: TextStyle(
+                        color: provider.stressLevel > 50
+                            ? AppColors.brainColor
+                            : Colors
+                                  .green, // Changed to standard green if AppColors.successText is missing
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.right,
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 10),
 
-              // Progress Bar
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: LinearProgressIndicator(
